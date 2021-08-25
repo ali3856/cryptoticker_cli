@@ -4,7 +4,7 @@ require_relative "lib/cryptoticker_cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "cryptoticker_cli"
-  spec.version       = CryptotickerCli::VERSION
+  spec.version       = Cryptoticker::VERSION
   spec.authors       = ["Asim Ali"]
   spec.email         = ["asimsali95@gmail.com"]
 

@@ -16,10 +16,11 @@ class Scraper
             id = name[1].split(")#")[1] #list tickers 1-24
             
             current_price = element.css("span._3XNm6CSrchU-MNbu1Zh3m2").text #current price
-            change_positive = element.css("span.color-long").text # %change positive
-            change_negative = element.css("span.color-short").text # %change negative
+            #change_positive = element.css("span.color-long").text # %change positive
+            #change_negative = element.css("span.color-short").text # %change negative
+            percent_change = element.css("span._2SYFxGdmPGEAqHRZI8P__k").text
             
-            Crypto.new(id, ticker, full_name, current_price, change_positive, change_negative) #creates new instance of class Crypto #belongs to relationship
+            Crypto.new(id, ticker, full_name, current_price, percent_change) #creates new instance of class Crypto #belongs to relationship
             #puts name, current_price, change_positive, change_negative, ""
         end
     end

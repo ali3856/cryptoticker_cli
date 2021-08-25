@@ -23,20 +23,15 @@ class Cryptoticker::CLI   #name needs to be changed
             puts "Ticker: #{crypto.ticker}"
             puts "Full name: #{crypto.full_name}"
             puts "Price: $#{crypto.current_price}"
-
-            if crypto.change_positive == nil
-                puts "% Change: #{crypto.change_negative}"
-            else crypto.change_negative == nil
-                puts "% Change: #{crypto.change_positive}"
-            end
-            menu
-        elsif 
+            puts "% Change: #{crypto.percent_change}"
+          menu
+        elsif input == "exit" || "quit"
+            puts ""
+            puts "Thank you for using CryptoTicker CLI. Goodbye!"
+        else
             puts ""
             puts "Invalid choice, please enter a number between 1-24:"
             menu
-        else input = "exit" || "quit"
-            puts ""
-            puts "Thank you for using CryptoTicker CLI. Goodbye!"
         end
     end
 end

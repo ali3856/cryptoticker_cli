@@ -1,14 +1,14 @@
 class Crypto
-    attr_accessor :id, :ticker, :full_name, :current_price, :change_positive, :change_negative
+    attr_accessor :id, :ticker, :full_name, :current_price, :percent_change
 
     @@all = []
 
-    def initialize(id, ticker, full_name, current_price, change_positive, change_negative)
+    def initialize(id, ticker, full_name, current_price, percent_change)
+        @id = id
         @ticker = ticker
         @full_name = full_name
         @current_price = current_price
-        @change_positive = change_positive
-        @change_negative = change_negative
+        @percent_change = percent_change
         @@all << self
     end
 
