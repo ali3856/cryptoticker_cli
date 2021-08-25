@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby #shebang operator to tell bash to execute in ruby
+
+require_relative "../lib/cryptoticker_cli"
+
+Cryptoticker::CLI.new.call
