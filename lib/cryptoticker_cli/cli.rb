@@ -4,44 +4,54 @@ class Cryptoticker::CLI   #name needs to be changed
         puts "Welcome to CryptoTicker!"
         
         Scraper.scrape_crypto
-        Crypto.all.each.with_index(1) do |app, id|
-        puts "#{id}. #{app.ticker}"
-        end
+        crypto_list
         #binding.pry
         menu
     end
 
-    def menu
-        puts ""
+    def instructions
         puts "Instructions:"
-        puts "1. Enter the name or number of the cryptocurrency you would like to view."
+        puts "1. Enter the number of the cryptocurrency you would like to view."
         puts "2. Or enter 'list' to view the full list of cryptocurrencies at any time."
         puts "3. Lastly enter 'exit' to end the program."
+    end
+
+    def display_crypto
+        crypto = Crypto.all[@input.to_i - 1]
+        puts ""
+        puts "Ticker: #{crypto.ticker}"
+        puts "Full name: #{crypto.full_name}"
+        puts "Price: $#{crypto.current_price}"
+        puts "24 HR % Change: #{crypto.percent_change}"
+    end
+    
+    def crypto_list
+        Crypto.all.each.with_index(1) do |app, id|
+            puts "#{id}. #{app.ticker}"
+        end
+    end
+
+    def menu
+        puts ""
+        instructions
         puts ""
         puts "Enter your command:"
-        input = gets.chomp
+        @input = gets.chomp
 
-        if input.to_i > 0 && input.to_i <= 24
-            crypto = Crypto.all[input.to_i - 1]
-            puts ""
-            puts "Ticker: #{crypto.ticker}"
-            puts "Full name: #{crypto.full_name}"
-            puts "Price: $#{crypto.current_price}"
-            puts "24 HR % Change: #{crypto.percent_change}"
+        if @input.to_i > 0 && @input.to_i <= 24
+            display_crypto
             menu
-        elsif input == "list"
-            Crypto.all.each.with_index(1) do |app, id|
-                puts "#{id}. #{app.ticker}"
-            end
+        elsif @input == "list"
+            crypto_list
             menu
-        elsif input == "exit"
+        elsif @input == "exit"
             puts ""
             puts "Thank you for using CryptoTicker CLI. Goodbye!"
             puts ""
             exit
         else
             puts ""
-            puts "Invalid choice, please enter a number between 1-24:"
+            puts "Invalid command...please enter a valid command from the instructions below."
             menu
         end
     end
