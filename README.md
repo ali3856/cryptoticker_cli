@@ -20,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the command below and follow the on screen instructions.
+
+bin/cryptoticker
 
 ## Development
 

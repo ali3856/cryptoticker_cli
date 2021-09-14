@@ -9,28 +9,6 @@ class Cryptoticker::CLI   #name needs to be changed
         menu
     end
 
-    def instructions
-        puts "Instructions:"
-        puts "1. Enter the number of the cryptocurrency you would like to view."
-        puts "2. Or enter 'list' to view the full list of cryptocurrencies at any time."
-        puts "3. Lastly enter 'exit' to end the program."
-    end
-
-    def display_crypto
-        crypto = Crypto.all[@input.to_i - 1]
-        puts ""
-        puts "Ticker: #{crypto.ticker}"
-        puts "Full name: #{crypto.full_name}"
-        puts "Price: $#{crypto.current_price}"
-        puts "24 HR % Change: #{crypto.percent_change}"
-    end
-    
-    def crypto_list
-        Crypto.all.each.with_index(1) do |app, id|
-            puts "#{id}. #{app.ticker}"
-        end
-    end
-
     def menu
         puts ""
         instructions
@@ -53,6 +31,30 @@ class Cryptoticker::CLI   #name needs to be changed
             puts ""
             puts "Invalid command...please enter a valid command from the instructions below."
             menu
+        end
+    end
+    
+    private 
+
+    def instructions
+        puts "Instructions:"
+        puts "1. Enter the number of the cryptocurrency you would like to view."
+        puts "2. Or enter 'list' to view the full list of cryptocurrencies at any time."
+        puts "3. Lastly enter 'exit' to end the program."
+    end
+
+    def display_crypto
+        crypto = Crypto.all[@input.to_i - 1]
+        puts ""
+        puts "Ticker: #{crypto.ticker}"
+        puts "Full name: #{crypto.full_name}"
+        puts "Price: $#{crypto.current_price}"
+        puts "24 HR % Change: #{crypto.percent_change}"
+    end
+    
+    def crypto_list
+        Crypto.all.each.with_index(1) do |app, id|
+            puts "#{id}. #{app.ticker}"
         end
     end
 end
